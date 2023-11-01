@@ -1,21 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
-import Form from './Components/Form';
+import FormInput from './Components/FormInput';
 import axios from "axios";
 import * as Yup from "yup"
 import { useEffect, useState } from 'react';
 import List from './Components/List';
-import Errors from "./Components/Errors";
+
 
 const formSchema = Yup.object().shape({
-  name: Yup.string().required("İsim, Soyisim alanının doldurulması zorunludur."),
+  name: Yup.string().required("İsim, Soyisim alanı boş bırakılamaz."),
 
-  email: Yup.string
+  email: Yup.string()
     .email("Lütfen geçerli bir email adresi giriniz.")
     .required("Email adresi boş bırakılamaz."),
 
-  password: Yup.string
-    .password(6, "Minimum 6 karakter içermesi zorunludur.")
+  password: Yup.string()
+    .min(6, "Minimum 6 karakter içermesi zorunludur.")
     .required("Şifre alanı boş bırakılamaz."),
 
   terms: Yup.boolean().oneOf([true], "Kayıt sözleşmesini kabul etmeden işlem gerçekleştirilemez."),
@@ -45,12 +45,15 @@ function App() {
       ? setForm({ ...form, terms: !form.terms })
       : setForm({ ...form, [name]: value });
 
-    Yup.reach((formSchema, name))
+    Yup.reach(formSchema, name)
       .validate(value)
       .then(() => { setError({ ...error, [name]: "" }); })
       .catch((err) => { setError({ ...error, [name]: err.errors[0] }); })
 
   };
+
+
+
 
 
 
@@ -66,8 +69,7 @@ function App() {
 
   return (
     <div className="App">
-      <Form handleChange={handleChange} handleSubmit={handleSubmit} submitDisabled={submitDisabled} user={form} />
-      <Errors errors={error} />
+      <FormInput handleChange={handleChange} errors={error} handleSubmit={handleSubmit} submitDisabled={submitDisabled} user={form} />
       <List data={data} />
     </div>
   );
