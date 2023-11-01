@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 
 const Form = ({ handleSubmit, handleChange, submitDisable, user }) => {
@@ -11,7 +11,7 @@ const Form = ({ handleSubmit, handleChange, submitDisable, user }) => {
 
 
     return (
-        <form onSubmit={() => { handleSubmit }}>
+        <form onSubmit={(e) => { handleSubmit(e) }}>
             <label htmlFor="name">İsim Soyisim:
                 <input id="name" type="text" name="name" onChange={handleChange} value={user.name} />
             </label>
@@ -26,7 +26,7 @@ const Form = ({ handleSubmit, handleChange, submitDisable, user }) => {
                 <input id="terms" type="checkbox" name="terms" checked={!user.terms} onChange={handleChange} value={user.terms} />
             </label>
 
-            <button type="submit">Login</button>
+            <button type="submit" value="Kaydet" disabled={!submitDisable} >Kayıt ol</button>
         </form>
 
 

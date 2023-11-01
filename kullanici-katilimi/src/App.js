@@ -30,7 +30,7 @@ function App() {
   const handleSubmit = (e) => {
     e.PreventDefault();
     axios
-      .post("https://reqres.in/api/users")
+      .post("https://reqres.in/api/users", form)
       .then((res) => setData([...data, res.data]));
     setForm(dummyForm);
     setError(hataErrors);
@@ -46,7 +46,7 @@ function App() {
     Yup.reach((formSchema, name))
       .validate(value)
       .then(() => { setError({ ...error, [name]: "" }); })
-      .catch((err) => { setError({ ...error, [name]: err.error[0] }); })
+      .catch((err) => { setError({ ...error, [name]: err.errors[0] }); })
 
   };
 
