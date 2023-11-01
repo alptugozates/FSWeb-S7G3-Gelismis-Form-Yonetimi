@@ -4,6 +4,8 @@ import Form from './Components/Form';
 import axios from "axios";
 import * as Yup from "yup"
 import { useEffect, useState } from 'react';
+import List from './Components/List';
+import Errors from "./Components/Errors";
 
 const formSchema = Yup.object().shape({
   name: Yup.string().required("İsim, Soyisim alanının doldurulması zorunludur."),
@@ -65,6 +67,8 @@ function App() {
   return (
     <div className="App">
       <Form handleChange={handleChange} handleSubmit={handleSubmit} submitDisabled={submitDisabled} user={form} />
+      <Errors errors={error} />
+      <List data={data} />
     </div>
   );
 }
