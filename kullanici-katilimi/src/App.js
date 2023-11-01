@@ -42,14 +42,16 @@ function App() {
     e.target.type === "checkbox"
       ? setForm({ ...form, terms: !form.terms })
       : setForm({ ...form, [name]: value });
-    formCheck(name, value);
+
+    Yup.reach((formSchema, name))
+      .validate(value)
+      .then(() => { setError({ ...error, [name]: "" }); })
+      .catch((err) => { setError({ ...error, [name]: err.error[0] }); })
+
   };
 
-  const formCheck = (name, value) => {
-    Yup.reach(formSchema, name)
-    validate(value)
-      .then(() => setError({ ...error, [name]: err.errors[0] }));
-  };
+
+
 
   useEffect = (() => {
     formSchema.isValid(form).then((response) => setSubmitDisabled(response));
