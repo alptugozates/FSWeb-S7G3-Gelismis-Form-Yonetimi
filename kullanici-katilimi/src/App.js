@@ -47,19 +47,28 @@ function App() {
 
     Yup.reach(formSchema, name)
       .validate(value)
-      .then(() => { setError({ ...error, [name]: "" }); })
-      .catch((err) => { setError({ ...error, [name]: err.errors[0] }); })
+      .then(() => { setError({ ...error, [name]: "" }); setSubmitDisabled(true) })
+      .catch((err) => { setError({ ...error, [name]: err.errors[0] }); setSubmitDisabled(false) })
 
   };
 
 
 
-
+  // const validateForm = (form) => {
+  //   formSchema.isValid(form)
+  //     .then((response) => {
+  //       console.log("validateForm", response)
+  //       setSubmitDisabled(!response)
+  //     }).catch((err) => {
+  //       console.log("validateForm", err.name, err.errors)
+  //       setSubmitDisabled(true)
+  //     })
+  // }
 
 
 
   useEffect = (() => {
-    formSchema.isValid(form).then((response) => setSubmitDisabled(response));
+    formSchema.isValid(form).then((valid) => setSubmitDisabled(!valid));
   }, [form])
 
 

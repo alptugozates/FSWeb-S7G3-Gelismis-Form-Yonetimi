@@ -2,7 +2,7 @@ import React from "react";
 import { Form } from "react-bootstrap";
 
 
-const FormInput = ({ handleSubmit, handleChange, submitDisable, user, errors }) => {
+const FormInput = ({ handleSubmit, handleChange, submitDisabled, user, errors }) => {
 
 
 
@@ -42,7 +42,7 @@ const FormInput = ({ handleSubmit, handleChange, submitDisable, user, errors }) 
             </Form.Control.Feedback>
 
 
-            <button type="submit" value="Kaydet" disabled={!submitDisable} >Kayıt ol</button>
+            <button type="submit" value="Kaydet" disabled={!submitDisabled} >Kayıt ol</button>
         </form>
 
 
