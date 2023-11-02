@@ -16,21 +16,21 @@ const FormInput = ({ handleSubmit, handleChange, submitDisabled, user, errors })
 
             <label htmlFor="name">İsim Soyisim:</label>
             <input id="name" type="text" name="name" onChange={handleChange} value={user.name} />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback type="invalid" id="name-validation" >
                 {errors.name}
             </Form.Control.Feedback>
 
 
             <label htmlFor="email">E-mail:</label>
             <input id="email" type="email" name="email" onChange={handleChange} value={user.email} />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback type="invalid" id="email-validation" >
                 {errors.email}
             </Form.Control.Feedback>
 
 
             <label htmlFor="password">Şifre:</label>
             <input id="password" type="password" name="password" onChange={handleChange} value={user.password} />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback type="invalid" id="password-validation">
                 {errors.password}
             </Form.Control.Feedback>
 
@@ -42,7 +42,7 @@ const FormInput = ({ handleSubmit, handleChange, submitDisabled, user, errors })
             </Form.Control.Feedback>
 
 
-            <button type="submit" value="Kaydet" disabled={!submitDisabled} >Kayıt ol</button>
+            <input type="submit" value="Kayıt ol" disabled={!submitDisabled} />
         </form>
 
 
