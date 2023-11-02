@@ -14,7 +14,7 @@ const FormInput = ({ handleSubmit, handleChange, submitDisabled, user, errors })
     return (
         <form onSubmit={(e) => { handleSubmit(e) }}>
 
-            <label htmlFor="name">İsim Soyisim:</label>
+            <label htmlFor="name-input">İsim Soyisim:</label>
             <input id="name-input" type="text" name="name" onChange={handleChange} value={user.name} />
             <Form.Control.Feedback type="invalid" id="name-validation" >
                 {errors.name}
@@ -37,7 +37,7 @@ const FormInput = ({ handleSubmit, handleChange, submitDisabled, user, errors })
 
             <label htmlFor="terms">Kayıt sözleşmesini kabul ediyorum.</label>
             <input id="terms" type="checkbox" name="terms" checked={user.terms} onChange={handleChange} value={!user.terms} />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback type="invalid" id="terms-validation">
                 {errors.terms}
             </Form.Control.Feedback>
 
