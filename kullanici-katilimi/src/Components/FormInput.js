@@ -15,7 +15,7 @@ const FormInput = ({ handleSubmit, handleChange, submitDisabled, user, errors })
         <form onSubmit={(e) => { handleSubmit(e) }}>
 
             <label htmlFor="name">İsim Soyisim:</label>
-            <input id="name" type="text" name="name" onChange={handleChange} value={user.name} />
+            <input id="name-input" type="text" name="name" onChange={handleChange} value={user.name} />
             <Form.Control.Feedback type="invalid" id="name-validation" >
                 {errors.name}
             </Form.Control.Feedback>
